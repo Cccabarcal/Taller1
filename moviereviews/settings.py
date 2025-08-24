@@ -54,6 +54,7 @@ ROOT_URLCONF = 'moviereviews.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'moviereviews/templates')],
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
