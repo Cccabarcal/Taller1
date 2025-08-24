@@ -168,6 +168,8 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ movie.title }}</h5>
                             <p class="card-text">Director: {{ movie.director }}</p>
+                            <p class="card-text">Genre: {{ movie.genre }}</p>
+                            <p class="card-text">Year: {{ movie.year }}</p>
                             {% if movie.url %}
                                 <a href="{{ movie.url }}" class="btn btn-primary" target="_blank">Go somewhere</a>
                             {% endif %}

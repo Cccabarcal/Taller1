@@ -17,25 +17,28 @@ class Command(BaseCommand):
             movies = json.load(file)
         
         # Add products to the database
-        for i in range(100):
+        for i in range(min(100, len(movies))):
             movie = movies[i]
-            exist = Movie.objects.filter(title = movie['title']).first() #Se asegura que la película no exista en la base de datos
+            exist = Movie.objects.filter(title=movie.get('title', '')).first()
             if not exist:
-                try:              
-                    Movie.objects.create(title = movie['title'],
-                                        image = 'movie/images/default.jpg',
-                                        genre = movie['genre'],
-                                        year = movie['year'],
-                                        description = movie['plot'],)
-                except:
-                    pass        
+                try:
+                    Movie.objects.create(
+                        title=movie.get('title', ''),
+                        director=movie.get('director', 'Desconocido'),
+                        image='movies/images/default.jpg',
+                        url=movie.get('url', ''),
+                        genre=movie.get('genre', ''),
+                        year=movie.get('year', None),
+                    )
+                except Exception as e:
+                    print(f"Error creando película: {movie.get('title', '')} - {e}")
             else:
                 try:
-                    exist.title = movie["title"]
-                    exist.image = 'movie/images/default.jpg'
-                    exist.genre = movie["genre"]
-                    exist.year = movie["year"]
-                    exist.description = movie["plot"]
-                except:
-                    pass
-        #self.stdout.write(self.style.SUCCESS(f'Successfully added {cont} products to the database'))
+                    exist.director = movie.get('director', 'Desconocido')
+                    exist.image = 'movies/images/default.jpg'
+                    exist.url = movie.get('url', '')
+                    exist.genre = movie.get('genre', '')
+                    exist.year = movie.get('year', None)
+                    exist.save()
+                except Exception as e:
+                    print(f"Error actualizando película: {movie.get('title', '')} - {e}")
