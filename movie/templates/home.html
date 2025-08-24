@@ -104,23 +104,40 @@
 
 <div class="container mt-4">
     <h1 class="text-center main-title">Discover Amazing Movies</h1>
-    <div class="card search-card">
-        <div class="card-body">
-            <h3 class="card-title text-center mb-4">🔍 Search Movies</h3>
-            <form action="" method="get">
-                <div class="row align-items-end">
-                    <div class="col-md-8">
-                        <label for="searchMovie" class="form-label fw-bold">Find your favorite movie:</label>
-                        <input type="text" name="searchMovie" id="searchMovie" class="form-control search-input" 
-                               value="{{ searchTerm|default:'' }}" placeholder="Enter movie title..."/>
+        <div class="card search-card">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">🔍 Search Movies</h3>
+                <form action="" method="get">
+                    <div class="row align-items-end">
+                        <div class="col-md-8">
+                            <label for="searchMovie" class="form-label fw-bold">Find your favorite movie:</label>
+                            <input type="text" name="searchMovie" id="searchMovie" class="form-control search-input" 
+                                   value="{{ searchTerm|default:'' }}" placeholder="Enter movie title..."/>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <button type="submit" class="btn search-btn w-100">Search</button>
+                        </div>
                     </div>
-                    <div class="col-md-4 text-center">
-                        <button type="submit" class="btn search-btn w-100">Search</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
+
+        <div class="card search-card">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">📧 Subscribe to our mailing list</h3>
+                <form action="{% url 'signup' %}" method="get">
+                    <div class="row align-items-end">
+                        <div class="col-md-8">
+                            <label for="emailSubscribe" class="form-label fw-bold">Enter your email:</label>
+                            <input type="email" name="email" id="emailSubscribe" class="form-control search-input" placeholder="your@email.com" required />
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <button type="submit" class="btn search-btn w-100">Subscribe</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 
     {% if searchTerm %}
         <div class="search-info text-center">
