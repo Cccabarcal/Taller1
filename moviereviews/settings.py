@@ -54,8 +54,11 @@ ROOT_URLCONF = 'moviereviews.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'moviereviews/templates')],
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'moviereviews/templates'),
+            os.path.join(BASE_DIR, 'movie/templates'),
+            os.path.join(BASE_DIR, 'news/templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,3 +129,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+    'moviereviews/static/'
+]
